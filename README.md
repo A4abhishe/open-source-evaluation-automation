@@ -1,6 +1,6 @@
 # Open Source Evaluation Automation
 
-A Google Apps Script system that ran a 12-hour, 240-student coding evaluation end to end: it assigned problem statements, built and scheduled the submission form, pulled every student's pull request data from GitHub, and fed an AI-assisted scoring pipeline with live dashboards and rank lists.
+A Google Apps Script system that ran a 12-hour, 240-student coding evaluation end to end: it assigned problem statements, built and scheduled the submission form, pulled every student's pull request data from GitHub, and fed an AI-assisted scoring pipeline. Three live dashboards built as Claude artifacts showed attendance, rankings and results to students, mentors and leadership.
 
 ![Evaluation dashboard (dummy data)](docs/dashboard-preview.png)
 
@@ -21,6 +21,7 @@ An internal open source hackathon had about 240 students in three batches, three
 | GitHub | Fetches PR state, changed files, additions, deletions and CI status in batches of 25 requests, and flags edited test files or workflows. | None |
 | Scoring | AI-assisted evaluation runs the original tests on each student's latest code and scores code, Markdown files and form answers on a 100-mark rubric. Results fill Auto Marks, Mid Evaluation Scores and the Rank List. | Mentors review flags |
 | Final | Mentors enter in-person marks; the Rank List switches to final scores automatically. | Mentor marks |
+| Dashboards | Live attendance, leaderboard and results dashboards read from public-safe tabs of the sheet (no phone numbers or emails). Attendance refreshes every hour. | None |
 
 ## How it works
 
@@ -36,7 +37,21 @@ flowchart LR
     P --> S
     S --> D[Mid Evaluation Scores<br/>Rank List, Dashboard]
     D --> X[Mentor review + Final Evaluation]
+    D --> V[Live dashboards<br/>Attendance, Leaderboard, Results]
+    X --> V
 ```
+
+## Live dashboards
+
+![Live dashboards (dummy data)](docs/live-dashboards-preview.png)
+
+Three dashboards were built as Claude artifacts on top of the evaluation sheet. Each reads only a public-safe tab, so no phone numbers or emails leave the sheet.
+
+| Dashboard | Audience | What it shows |
+| --- | --- | --- |
+| Attendance | Mentors | Present, late and absent at each of the 4 checkpoints, attendance % per student and per batch, search by name or College ID. Copied from the sheet every hour. |
+| Leaderboard | Students | Overall, mid and final rank, averages by batch and by problem statement, with search and filters. |
+| Results report | Leadership | Funnel from roster to final evaluation, score spread, results by batch, problem statement and mentor, where marks were earned, auto flags, top 10, students who need support, mid vs final scatter and the largest drops. |
 
 ## Scoring rubric (mid evaluation, 100 marks)
 
@@ -105,7 +120,7 @@ The required behaviours for each are in the `PS` object in [src/OpenSourceEvalua
 
 ## Tech
 
-Google Apps Script (V8), FormApp, SpreadsheetApp, UrlFetchApp with the GitHub REST API, LockService, PropertiesService, time-driven and form-submit triggers.
+Google Apps Script (V8), FormApp, SpreadsheetApp, UrlFetchApp with the GitHub REST API, LockService, PropertiesService, time-driven and form-submit triggers, Claude (AI-assisted scoring and live dashboards as artifacts).
 
 ## Author
 
