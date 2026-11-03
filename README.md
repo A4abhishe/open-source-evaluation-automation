@@ -88,6 +88,7 @@ The required behaviours for each are in the `PS` object in [src/OpenSourceEvalua
 | --- | --- |
 | `src/Code.gs` | Balanced problem statement auto-assignment on registration |
 | `src/OpenSourceEvaluation.gs` | Form builder, open/close scheduling, response sync, GitHub fetch, roster sync, menu |
+| `src/OpenSourceEvaluationTests.gs` | Test helpers: dummy submissions, burst test, timed window test, status and cleanup |
 | `src/appsscript.json` | Apps Script manifest (V8, Asia/Kolkata) |
 
 ## Sheet tabs used
@@ -110,6 +111,20 @@ The required behaviours for each are in the `PS` object in [src/OpenSourceEvalua
 3. Fill the form window in `Eval Config!C10:D10`, then run `setupOpenSourceEvaluation` once.
 4. Optional: **Open Source Evaluation Tools → Set GitHub token** (raises the GitHub limit from 60 to 5,000 requests per hour).
 5. After the form closes, run **Fetch GitHub data**.
+
+## Testing before the live run
+
+The system was tested end to end before 240 students used it. `src/OpenSourceEvaluationTests.gs` submits real form responses through `FormApp` so every trigger runs exactly as it would live.
+
+| Test | What it proves |
+| --- | --- |
+| `test1_submitFour` | One response per problem statement reaches Pulse Check Responses in the right columns, with and without a PR link |
+| `test2_burst` | 12 back-to-back submissions: the lock and the 5-minute safety net keep every row, none overwritten |
+| `test3_scheduleSoon` | The form opens and closes on its own 2 and 4 minutes later |
+| `test_status` | Prints form state, response counts and installed triggers |
+| `test_cleanupTestOnly` | Deletes only test responses (email starting with `test.`), safe while real students submit |
+
+Set `TEST_STUDENTS` to roll numbers from your own roster first. `test_cleanup` deletes every response, so run it only before the real evaluation.
 
 ## Improvements made for this public version
 
