@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Open Source Evaluation dashboard (dummy data)</title>
+<style>
+  body { margin: 0; padding: 24px; background: #f4f2fa; font-family: Calibri, "Segoe UI", Arial, sans-serif; color: #1d1a2e; width: 1100px; box-sizing: border-box; }
+  .title { background: #0c0a18; color: #fff; font-size: 26px; font-weight: 700; padding: 14px 18px; }
+  .sub { background: #fff; color: #555; font-size: 13px; padding: 6px 18px 10px; }
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); background: #e6def6; margin-top: 12px; }
+  .card { text-align: center; padding: 14px 8px; }
+  .card span { display: block; font-size: 12px; letter-spacing: .5px; text-transform: uppercase; }
+  .card b { display: block; font-size: 34px; margin-top: 4px; }
+  .row { display: grid; grid-template-columns: 1.3fr 1fr; gap: 18px; margin-top: 18px; }
+  .panel { background: #fff; }
+  .panel h3 { margin: 0; background: #6a3aa2; color: #fff; font-size: 14px; padding: 7px 10px; letter-spacing: .3px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 7px 10px; border-bottom: 1px solid #ddd; font-weight: 700; }
+  td { padding: 6px 10px; border-bottom: 1px solid #f0edf6; }
+  td.n, th.n { text-align: right; }
+  tr.tot td { font-weight: 700; background: #efe9f8; }
+  .bars { padding: 14px 16px; }
+  .bar { display: grid; grid-template-columns: 120px 1fr 40px; align-items: center; gap: 8px; margin: 9px 0; font-size: 13px; }
+  .bar i { display: block; height: 18px; background: #6a3aa2; }
+  .note { font-size: 11px; color: #777; padding: 8px 10px; }
+  .flag { color: #b3261e; font-weight: 700; }
+</style>
+</head>
+<body>
+  <div class="title">Open Source Evaluation | OVERVIEW</div>
+  <div class="sub">12-hour evaluation · 4 attendance checkpoints · mid evaluation auto-scored · <b>dummy data</b></div>
+
+  <div class="cards">
+    <div class="card"><span>Registered students</span><b>240</b></div>
+    <div class="card"><span>Mid form submitted</span><b>228</b></div>
+    <div class="card"><span>Pull requests opened</span><b>196</b></div>
+    <div class="card"><span>Average mid score</span><b>61.4</b></div>
+  </div>
+
+  <div class="row">
+    <div class="panel">
+      <h3>BATCH-WISE SUMMARY</h3>
+      <table>
+        <tr><th>Batch</th><th class="n">Registered</th><th class="n">Submitted</th><th class="n">PR opened</th><th class="n">Avg score</th><th class="n">Flags</th></tr>
+        <tr><td>Batch A</td><td class="n">78</td><td class="n">75</td><td class="n">66</td><td class="n">63.2</td><td class="n">4</td></tr>
+        <tr><td>Batch B</td><td class="n">84</td><td class="n">80</td><td class="n">69</td><td class="n">60.8</td><td class="n">6</td></tr>
+        <tr><td>Batch C</td><td class="n">78</td><td class="n">73</td><td class="n">61</td><td class="n">60.1</td><td class="n">3</td></tr>
+        <tr class="tot"><td>Overall</td><td class="n">240</td><td class="n">228</td><td class="n">196</td><td class="n">61.4</td><td class="n">13</td></tr>
+      </table>
+    </div>
+    <div class="panel">
+      <h3>STUDENTS BY PROBLEM STATEMENT (AUTO-ASSIGNED)</h3>
+      <div class="bars">
+        <div class="bar"><span>OrderOps</span><i style="width:100%"></i><b>80</b></div>
+        <div class="bar"><span>RewardBook</span><i style="width:100%"></i><b>80</b></div>
+        <div class="bar"><span>SmartDispatch</span><i style="width:100%"></i><b>80</b></div>
+      </div>
+      <div class="note">Balanced split: each new registration goes to the problem statement with the fewest students.</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="panel">
+      <h3>MID EVALUATION SCORES | TOP 5</h3>
+      <table>
+        <tr><th>Rank</th><th>Student</th><th>Batch</th><th>PS</th><th class="n">Understanding /15</th><th class="n">Problem /25</th><th class="n">Prototype /25</th><th class="n">Total /100</th></tr>
+        <tr><td>1</td><td>Student 017</td><td>A</td><td>OrderOps</td><td class="n">14</td><td class="n">24</td><td class="n">25</td><td class="n">94</td></tr>
+        <tr><td>2</td><td>Student 132</td><td>B</td><td>SmartDispatch</td><td class="n">14</td><td class="n">23</td><td class="n">24</td><td class="n">91</td></tr>
+        <tr><td>3</td><td>Student 088</td><td>B</td><td>RewardBook</td><td class="n">13</td><td class="n">23</td><td class="n">23</td><td class="n">88</td></tr>
+        <tr><td>4</td><td>Student 201</td><td>C</td><td>OrderOps</td><td class="n">13</td><td class="n">22</td><td class="n">23</td><td class="n">86</td></tr>
+        <tr><td>5</td><td>Student 045</td><td>A</td><td>RewardBook</td><td class="n">12</td><td class="n">22</td><td class="n">22</td><td class="n">83</td></tr>
+      </table>
+    </div>
+    <div class="panel">
+      <h3>AUTO FLAGS FOR MENTOR REVIEW</h3>
+      <table>
+        <tr><th>Flag</th><th class="n">Students</th></tr>
+        <tr><td class="flag">Test files edited or deleted</td><td class="n">5</td></tr>
+        <tr><td class="flag">Workflow file changed</td><td class="n">2</td></tr>
+        <tr><td class="flag">Form PS differs from roster</td><td class="n">3</td></tr>
+        <tr><td class="flag">Late submission</td><td class="n">3</td></tr>
+      </table>
+      <div class="note">Flags are not penalties. A mentor decides and can enter a Mentor Override.</div>
+    </div>
+  </div>
+</body>
+</html>
