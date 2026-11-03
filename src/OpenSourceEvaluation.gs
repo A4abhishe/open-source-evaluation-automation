@@ -289,6 +289,7 @@ function buildForm_() {
 function readRoster_() {
   const sh = SpreadsheetApp.getActive().getSheetByName(CFG.roster.sheet);
   const last = sh.getLastRow();
+  if (last < CFG.roster.firstRow) return []; // empty roster
   const vals = sh.getRange(CFG.roster.firstRow, CFG.roster.idCol, last - CFG.roster.firstRow + 1, 2).getDisplayValues();
   const seen = {};
   return vals
